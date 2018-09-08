@@ -8,8 +8,7 @@ from .api import events
 from .api import control
 from .api import tasks
 from .api import workers
-from .views import auth
-from .views import monitor
+from .views import auth, HealthCheckView, monitor
 from .views.broker import BrokerView
 from .views.workers import WorkerView
 from .views.tasks import TaskView, TasksView, TasksDataTable
@@ -83,6 +82,8 @@ handlers = [
     (r"/login", auth.LoginHandler),
     url(r"/logout", auth.LogoutHandler, name='logout'),
 
+    # Health
+    (r"/health", HealthCheckView),
     # Error
     (r".*", NotFoundErrorHandler),
 ]

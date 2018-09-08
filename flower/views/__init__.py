@@ -100,3 +100,9 @@ class BaseHandler(tornado.web.RequestHandler):
         prefix = self.application.options.url_prefix
         url = super(BaseHandler, self).reverse_url(*args)
         return prepend_url(url, prefix) if prefix else url
+
+
+class HealthCheckHandler(BaseHandler):
+    def get(self):
+        self.set_header("Content-Type", "text/plain")
+        self.write("Healthy!")
